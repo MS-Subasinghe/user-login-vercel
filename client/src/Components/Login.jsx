@@ -12,7 +12,7 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post('https://vercel-login-server.vercel.app/auth/login', {  email, password })
+    axios.post('https://user-login-vercel.vercel.app/auth/login', {  email, password })
       .then(res => {
         if (res.data.status) {
             navigate('/home');
