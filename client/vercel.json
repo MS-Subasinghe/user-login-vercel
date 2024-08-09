@@ -1,0 +1,10 @@
+{
+
+ "rewrites":[
+    {
+      "sourse":"/(.*)",
+      "destination":"/",
+   
+ ]
+  
+}
