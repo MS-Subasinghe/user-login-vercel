@@ -11,7 +11,7 @@ const ForgotUsername = () => {
   
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post('https://vercel-login-server.vercel.app/auth/forgot-username', { email})
+        axios.post('https://user-login-vercel.vercel.app/auth/forgot-username', { email})
           .then(res => {
             if (res.data.status) {
               alert("Check your email for reset username link")
