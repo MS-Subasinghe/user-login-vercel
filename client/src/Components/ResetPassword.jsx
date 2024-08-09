@@ -19,6 +19,7 @@ axios.post('https://user-login-vercel.vercel.app/auth/reset-password/'+token, {p
           }
         })
         .catch(err => console.log(err));
+        console.log(token)
     };
   return (
     <div className="d-flex justify-content-center align-items-center vh-100">
