@@ -12,8 +12,8 @@ import { UserRouter } from './routes/user.js'
 const app = express()
 app.use(express.json())
 app.use(cors({
-    origin: ["https://user-login-vercel.vercel.app"],
-    methods: ["POST", "GET"],
+    origin: ["https://user-login-vercel-frontend.vercel.app"],
+    methods: ["POST","GET"],
     credentials: true
 }));
 
