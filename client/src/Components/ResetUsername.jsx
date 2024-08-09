@@ -13,7 +13,7 @@ const ResetUsername = () => {
     
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post('https://vercel-login-server.vercel.app/auth/reset-username/'+token, {username})
+        axios.post('https://user-login-vercel.vercel.app/auth/reset-username/'+token, {username})
           .then(res => {
             if (res.data.status) {
               navigate('/');
