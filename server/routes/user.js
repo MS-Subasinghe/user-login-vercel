@@ -143,23 +143,43 @@ router.post('/reset-username/:token', async(req,res)=>{
 })
 
 
-//reset password
-router.post('/reset-password/:token', async(req,res)=>{
-    const {token }= req.params;
-    const {password} = req.body
+// Reset password route
+router.post('/reset-password/:token', async (req, res) => {
+    const { token } = req.params;
+    const { password } = req.body;
 
-
-    try{
-        const decoded = await jwt.verify(token,process.env.KEY);
+    try {
+        // Verify the JWT token
+        const decoded = jwt.verify(token, process.env.KEY);
         const id = decoded.id;
-        const hashpassword = await bcrypt.hash(password,10)
-        await User.findByIdAndUpdate({_id: id},{password:hashpassword})
-        return res.json({status:true, message :"updated password"})
 
-    }catch(err){
-        return res.json("invalid token")
+        // Hash the new password
+        const hashpassword = await bcrypt.hash(password, 10);
+
+        // Update the user's password in the database
+        const updatedUser = await User.findByIdAndUpdate(id, { password: hashpassword }, { new: true });
+
+        // If the user was not found
+        if (!updatedUser) {
+            return res.status(404).json({ status: false, message: "User not found" });
+        }
+
+        // Respond with success message
+        return res.json({ status: true, message: "Password updated successfully" });
+
+    } catch (err) {
+        console.error("Error resetting password:", err);
+        
+        // Check if the error is due to an invalid token
+        if (err.name === 'JsonWebTokenError' || err.name === 'TokenExpiredError') {
+            return res.status(400).json({ status: false, message: "Invalid or expired token" });
+        }
+
+        // Catch-all for other errors
+        return res.status(500).json({ status: false, message: "Server error, please try again later" });
     }
-     
-})
+});
+
+
 
 export {router as UserRouter}
