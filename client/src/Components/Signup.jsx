@@ -15,7 +15,7 @@ const Signup = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post('https://vercel-login-server.vercel.app/auth/signup',{username,email,phone,password}).then(response =>{
+    axios.post('https://user-login-vercel.vercel.app/auth/signup',{username,email,phone,password}).then(response =>{
      if(response.data.status){
         navigate('/')
      }
