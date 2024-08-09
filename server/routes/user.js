@@ -61,12 +61,13 @@ router.post('/forgot-password', async (req,res)=>{
       },
     });
 
-    const mailOptions = {
-      from: process.env.EMAIL_USER,
-      to: email,
-      subject: 'Reset Password',
-      text: `Click here to reset your password:https://user-login-vercel-frontend.vercel.app/resetPassword/${token}`,
-    };
+const mailOptions = {
+    from: process.env.EMAIL_USER,
+    to: email,
+    subject: 'Reset Password',
+    text: `Click here to reset your password: https://user-login-vercel-frontend.vercel.app/resetPassword/${token}`
+};
+
 
     transporter.sendMail(mailOptions, (error) => {
       if (error) {
