@@ -65,9 +65,8 @@ const mailOptions = {
     from: process.env.EMAIL_USER,
     to: email,
     subject: 'Reset Password',
-    text: `Click here to reset your password:prj_W4HfnfN1r3ko7IR91uQmBDdxi5F4/resetPassword/${token}`
+    text: `Click here to reset your password:https://user-login-vercel-frontend.vercel.app/resetPassword/${token}`
 };
-       prj_W4HfnfN1r3ko7IR91uQmBDdxi5F4
 
 
     transporter.sendMail(mailOptions, (error) => {
