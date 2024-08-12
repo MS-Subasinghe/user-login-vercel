@@ -50,6 +50,8 @@ router.post('/forgot-password', async (req,res)=>{
         if(!user){
             return res.json({message:"user not registerd"})
         }
+        
+    const token = jwt.sign({ id: user._id }, process.env.KEY);
 
     const transporter = nodemailer.createTransport({
       service: 'gmail',
@@ -63,7 +65,7 @@ const mailOptions = {
     from: process.env.EMAIL_USER,
     to: email,
     subject: 'Reset Password',
-    text: `Click here to reset your password:https://user-login-vercel-frontend.vercel.app/resetPassword`
+    text: `Click here to reset your password:https://user-login-vercel-frontend.vercel.app/resetPassword/${token}`
 };
 
 
