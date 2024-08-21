@@ -16,11 +16,16 @@ axios.post('https://user-login-vercel.vercel.app/auth/reset-password/'+token, {p
         .then(res => {
           if (res.data.status) {
             navigate('/');
+                  console.log(res)
           }
         })
         .catch(err => console.log(err));
         console.log(token)
     };
+
+    console.log(res)
+
+    console.log(token)
   return (
     <div className="d-flex justify-content-center align-items-center vh-100">
     <div 
@@ -39,6 +44,7 @@ axios.post('https://user-login-vercel.vercel.app/auth/reset-password/'+token, {p
        Reset Password
       </h2>
       <div 
+
         className="bg-white p-4 rounded-3" 
         style={{ height: '12rem' }}
       >
